@@ -1,0 +1,39 @@
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 16px;
+  padding: 16px;
+  margin-left: 20vw;
+  margin-right: 20vw;
+  background-color: grey;
+}
+
+.hero-graph {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+   
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  max-width: 500px;
+}
+
+.graph {
+  padding-top: 10px;
+  width: 100%;
+  height: 200px;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  max-width: 500px;
+}
