@@ -72,8 +72,8 @@ const KeyLoggerGraph = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={4}  activeDot={{ r: 8 }} />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" strokeWidth={4}  />
+        <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={2}  activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="uv" stroke="#82ca9d" strokeWidth={2}  />
       </LineChart>
     </ResponsiveContainer>
   )

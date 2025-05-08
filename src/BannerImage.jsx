@@ -1,6 +1,7 @@
 import './App.css';
 import BannerCanvas from './BannerCanvas'; 
 import school_of_athens from './Raphael_School_of_Athens.jpg';
+import school_of_athens_banner from './The_School_of_Athens_banner.jpg';
 import { useEffect, useState } from 'react';
 
 const BannerImage = () => {
@@ -24,7 +25,7 @@ const BannerImage = () => {
       // 1. Draw scaled-down image to a temp canvas:
       const tmpCanvas = document.createElement('canvas');
       tmpCanvas.width = scaledWidth;
-      tmpCanvas.height = scaledHeight;
+      tmpCanvas.height = scaledHeight * scale;
       const tmpCtx = tmpCanvas.getContext('2d');
       tmpCtx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
 
@@ -33,11 +34,11 @@ const BannerImage = () => {
       setImageData(smallImageData);
     };
 
-    img.src = school_of_athens;
+    img.src = school_of_athens_banner;
   }, [])
 
   return (
-    <BannerCanvas imageData={imageData} radius={10}/>
+    <BannerCanvas imageData={imageData}/>
   );
 };
 
