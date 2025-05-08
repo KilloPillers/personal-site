@@ -11,13 +11,15 @@ const Banner = () => {
   return (
     <div className="banner-container">
       <BannerImage />
-      <div className="vignette-overlay" />
+      <div className="vignette-left" />
+      <div className="vignette-right"/>
+      <div className="vignette-bottom"/>
       <Avatar
         alt="Juan Alvarez"
         src={pfp}
         className="profile-avatar"
-        sx={{ width: "clamp(64px, 10vw, 144px)", 
-          height: "clamp(64px, 10vw, 144px)"}}
+        sx={{ width: "clamp(96px, 10vw, 144px)", 
+          height: "clamp(96px, 10vw, 144px)"}}
       />
     </div>
   )

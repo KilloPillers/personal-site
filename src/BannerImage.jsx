@@ -1,45 +1,54 @@
 import './App.css';
-import BannerCanvas from './BannerCanvas'; 
-import school_of_athens from './Raphael_School_of_Athens.jpg';
+import { useEffect, useRef, useState } from 'react';
+import BannerCanvas from './BannerCanvas';  
 import school_of_athens_banner from './The_School_of_Athens_banner.jpg';
-import { useEffect, useState } from 'react';
+import school_of_athens_banner_crop from './The_School_of_Athens_banner_cropped.jpg';
 
 const BannerImage = () => {
   const [imageData, setImageData] = useState(null);
+  const containerRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  // Loads the Image Data
-  useEffect(() => { 
-    var canvas = document.createElement('canvas'),
-      context = canvas.getContext('2d'),
-      img = new Image();
-    
-    img.onload = function () {
-      // TODO: Scale the image to the size of its component.
-      const viewportWidth = window.innerWidth;
-      const originalWidth = img.width;
-      const originalHeight = img.height;
-      const scale = viewportWidth / originalWidth;
-      const scaledWidth = viewportWidth;
-      const scaledHeight = Math.round(originalHeight * scale);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-      // 1. Draw scaled-down image to a temp canvas:
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const desiredWidth = container.clientWidth;
+    const desiredHeight = container.clientHeight;
+
+    const img = new Image();
+    img.onload = () => {
       const tmpCanvas = document.createElement('canvas');
-      tmpCanvas.width = scaledWidth;
-      tmpCanvas.height = scaledHeight * scale;
+      tmpCanvas.width = desiredWidth;
+      tmpCanvas.height = desiredHeight;
+
       const tmpCtx = tmpCanvas.getContext('2d');
-      tmpCtx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
+      tmpCtx.drawImage(img, 0, 0, desiredWidth, desiredHeight);
 
-      // 2. Get scaled-down image data:
-      const smallImageData = tmpCtx.getImageData(0, 0, scaledWidth, scaledHeight);
-      setImageData(smallImageData);
+      const imageData = tmpCtx.getImageData(0, 0, desiredWidth, desiredHeight);
+      setImageData(imageData);
     };
+    
+    if (isMobile) {
+      img.src = school_of_athens_banner_crop;
+    }
+    else {
+      img.src = school_of_athens_banner;
+    }
+  }, []);
 
-    img.src = school_of_athens_banner;
-  }, [])
 
   return (
-    <BannerCanvas imageData={imageData}/>
+    <div ref={containerRef} className="banner-container">
+      {imageData && <BannerCanvas imageData={imageData} />}
+    </div>
   );
 };
 
-export default BannerImage; 
+export default BannerImage;

@@ -1,83 +1,83 @@
 import PoissonDiskSampling from 'poisson-disk-sampling';
 import React, { useRef, useEffect } from 'react';
 
-const RADIUS_FACTOR = 10; 
+const RADIUS_FACTOR = 10;
 
 function randomInt(min, max) {
-  return Math.floor(Math.random()*(max - min + 1) + min);
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-const TitleScreenCanvas = ({ imageData }) => {
+const BannerCanvas = ({ imageData }) => {
   const canvasRef = useRef(null);
   const samplerRef = useRef(null);
   const pointsRef = useRef([]);
   const animationFrameId = useRef();
 
-  useEffect(() => { 
+  useEffect(() => {
     if (!imageData) return;
-    const radius = imageData.height / imageData.width * RADIUS_FACTOR
-      
+
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    const scaleFactor = window.devicePixelRatio || 1;
+
+    // Match canvas resolution to imageData and apply HiDPI scale
+    canvas.width = imageData.width * scaleFactor;
+    canvas.height = imageData.height * scaleFactor;
+    canvas.style.width = `${imageData.width}px`;
+    canvas.style.height = `${imageData.height}px`;
+    ctx.setTransform(scaleFactor, 0, 0, scaleFactor, 0, 0);
+
+    const canvasWidth = imageData.width;
+    const canvasHeight = imageData.height;
+
+    // Scale radius based on canvas width (or height)
+    const radius = canvasWidth * 0.001; // 0.8% of width
+
+    const baseLength = Math.sqrt(imageData.width * imageData.height);
+
+    const minDistance = baseLength * 0.0075;
+    const maxDistance = baseLength * 0.0075;
+
     samplerRef.current = new PoissonDiskSampling({
       shape: [imageData.width, imageData.height],
-      minDistance: 1.1,
-      maxDistance: 55,
+      minDistance: minDistance,
+      maxDistance: maxDistance,
       tries: 15,
-      distanceFunction: function (point) {
-        //var pixelRedIndex = (Math.round(point[0] + Math.round(point[1] * imageData.width))) * 4
+      distanceFunction: () => radius / 20,
+    });
 
-        return radius/20; //Math.pow(imageData.data[pixelRedIndex] / 255, 2.7);
-      }
-    })
-    
-    pointsRef.current = []; 
-    const firstPoint = samplerRef.current.addPoint([0, randomInt(0,imageData.height)]);
-    if (firstPoint) pointsRef.current.push(firstPoint)
+    pointsRef.current = [];
+    const firstPoint = samplerRef.current.addPoint([0, randomInt(0, imageData.height)]);
+    if (firstPoint) pointsRef.current.push(firstPoint);
 
-    function drawFrame() {
+    const drawFrame = () => {
       for (let i = 0; i < 300; i++) {
         const newPoint = samplerRef.current.next();
-        if (newPoint) {
-          pointsRef.current.push(newPoint);
-        }
-        else {
-          return;
-        }
+        if (newPoint) pointsRef.current.push(newPoint);
+        else return;
       }
-      animationFrameId.current = requestAnimationFrame(drawFrame);
 
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      canvas.width = imageData.width;
-      canvas.height = imageData.height;
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Draw points 
-      pointsRef.current.forEach(point => {
-        ctx.beginPath();
-        ctx.arc(point[0], point[1], radius, 0, Math.PI * 2);
-        const x = Math.floor(point[0]);
-        const y = Math.floor(point[1]);
-        const width = imageData.width;
-        const index = (y * width + x) * 4;
+      ctx.clearRect(0, 0, imageData.width, imageData.height);
+      pointsRef.current.forEach(([x, y]) => {
+        const index = (Math.floor(y) * imageData.width + Math.floor(x)) * 4;
         const r = imageData.data[index];
         const g = imageData.data[index + 1];
         const b = imageData.data[index + 2];
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
         ctx.fill();
       });
 
-      console.log("drawing");
-    }
-  
-    drawFrame(); 
+      animationFrameId.current = requestAnimationFrame(drawFrame);
+    };
 
-    return () => {
-      cancelAnimationFrame(animationFrameId.current);
-    }
+    drawFrame();
+
+    return () => cancelAnimationFrame(animationFrameId.current);
   }, [imageData]);
 
-  return <canvas ref={canvasRef}/>
-}; 
+  return <canvas ref={canvasRef} />;
+};
 
-export default TitleScreenCanvas;
+export default BannerCanvas;
