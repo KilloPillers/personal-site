@@ -13,10 +13,13 @@ const darkTheme = createTheme({
       secondary: '#A0A0A0',
     },
     primary: {
-      main: '#90CAF9', // Accent (blue)
+      main: '#FD837B', // Accent (salmon color)
     },
     secondary: {
-      main: '#F48FB1', // Accent (pink)
+      main: '#02A07D', // Accent (some sort of green)
+    },
+    accent: {
+      main: '0B62FB', // Accent (some sor of light blue)
     },
     divider: '#2C2C2C',
     success: {

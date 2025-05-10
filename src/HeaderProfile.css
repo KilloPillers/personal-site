@@ -3,8 +3,8 @@
   flex-direction: column;
   justify-content: center;
   gap: 5vw;
-  margin: 24px;
-  padding: 16px;
+  margin: 4px;
+  padding: 8px;
   margin-left: 5vw;
   margin-right: 5vw; 
 }
@@ -45,6 +45,7 @@
 
 @media (min-width: 800px) {
   .content {
+    margin: 24px;
     margin-left: 15vw;
     margin-right: 15vw;
     flex-direction: row;
