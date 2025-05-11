@@ -8,14 +8,15 @@ import {
   TimelineDot,
   TimelineOppositeContent,
 } from "@mui/lab"
-import { Avatar, Typography } from "@mui/material";
+import { Avatar, Typography, Box } from "@mui/material";
+import ProjectCard from "./ProjectCard"; 
 import projects from './projects.json';
 
 const ProjectCardContainer = () => {
   // TODO: Use Timeline component to show the date of when you did project.
   // CONSIDER: Should the timeline sort projects based on year?
-  // better projects should be highlighted at the top 
-  // 
+  // better projects should be highlighted at the top though? 
+  
 
   return (
     /* something */
@@ -23,7 +24,11 @@ const ProjectCardContainer = () => {
       {projects.map((project, index) => (
         <TimelineItem key={index}>
           <TimelineOppositeContent
-            sx={{ m: 'auto 0' }}
+            sx={{
+              textAlign: 'right',
+              pr: 2,
+              m: 'auto 0' 
+            }}
             align="center"
             justifyContent="flex-end"
             variant="body2"
@@ -50,11 +55,10 @@ const ProjectCardContainer = () => {
             }
           </TimelineSeparator>
 
-          <TimelineContent sx={{ py: '12px', px: 2, alignContent: "center", justifyContent: "flex-end" }}>
-            <Typography variant="h6" component="span">
-              {project.title}
-            </Typography>
-            <Typography>{project.description}</Typography>
+          <TimelineContent>
+            <Box sx={{  maxWidth: '600px', ml: index % 2 === 1 ? 'auto' : 0, mr: index % 2 !== 1 ? 'auto' : 0,  textAlign: 'left !important'}}>
+              <ProjectCard title={project.title} description={project.description} tags={project.tags} images={project.images}/>
+            </Box>
           </TimelineContent>
         </TimelineItem>
       ))}

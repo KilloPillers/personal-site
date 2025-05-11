@@ -51,7 +51,6 @@ const KeyLoggerGraph = () => {
   
   useEffect(() => {
     // TODO: Fetch metrics from MongoDB
-    console.log(data)
   }, [])
 
   return (

@@ -1,0 +1,53 @@
+.projectcard-container {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  padding: 10px;
+  gap: 10px;
+}
+
+.projectcard-slideshow-container {
+  display: flex;
+  width: 33%;
+  align-items: center;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.projectcard-slideshow-track {
+  display: flex;
+  animation: scroll 20s linear infinite;
+}
+
+.projectcard-slideshow-track img {
+  object-fit: cover;
+  aspect-ratio: auto; 
+}
+
+.projectcard-content {
+  display: flex;
+  width: 66%;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.projectcard-description {
+  overflow-wrap: break-word;
+  flex-grow: 2;
+}
+
+.projectcard-tags-container {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  gap: 10px;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

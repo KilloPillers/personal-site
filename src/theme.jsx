@@ -19,7 +19,7 @@ const darkTheme = createTheme({
       main: '#02A07D', // Accent (some sort of green)
     },
     accent: {
-      main: '0B62FB', // Accent (some sor of light blue)
+      main: '#0B62FB', // Accent (some sor of light blue)
     },
     divider: '#2C2C2C',
     success: {
