@@ -20,9 +20,9 @@ const HeaderProfile = () => {
           </Paper>
         </Box>
         <Box className="graph">
-            <KeyLoggerGraph/>
+          <KeyLoggerGraph />
         </Box>
-      </Box> 
+      </Box>
       <Box className="about-container">
         <Paper className="about">
           <Typography variant="h5">About Me</Typography>

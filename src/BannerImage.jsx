@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect, useRef, useState } from 'react';
-import BannerCanvas from './BannerCanvas';  
+import BannerCanvas from './BannerCanvas';
 import school_of_athens_banner from './The_School_of_Athens_banner.jpg';
 import school_of_athens_banner_crop from './The_School_of_Athens_banner_cropped.jpg';
 
@@ -34,15 +34,13 @@ const BannerImage = () => {
       const imageData = tmpCtx.getImageData(0, 0, desiredWidth, desiredHeight);
       setImageData(imageData);
     };
-    
+
     if (isMobile) {
       img.src = school_of_athens_banner_crop;
-    }
-    else {
+    } else {
       img.src = school_of_athens_banner;
     }
   }, []);
-
 
   return (
     <div ref={containerRef} className="banner-container">

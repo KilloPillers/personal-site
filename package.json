@@ -3,19 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "homepage": "https://portfolio.juan-alvarez.dev",
   "scripts": {
     "build": "rsbuild build",
     "check": "biome check --write",
     "dev": "rsbuild dev --open",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "preview": "rsbuild preview"
+    "preview": "rsbuild preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/lab": "^7.0.0-beta.12",
     "@mui/material": "^7.1.0",
+    "gh-pages": "^6.3.0",
     "poisson-disk-sampling": "^2.3.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
