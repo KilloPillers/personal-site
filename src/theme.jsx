@@ -5,8 +5,8 @@ const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: '#121212',  // Page background
-      paper: '#1E1E1E',    // Cards, modals, etc.
+      default: '#121212', // pages' background
+      paper: '#1E1E1E', // used for cards
     },
     text: {
       primary: '#E0E0E0',
@@ -41,4 +41,3 @@ const darkTheme = createTheme({
 });
 
 export default darkTheme;
-

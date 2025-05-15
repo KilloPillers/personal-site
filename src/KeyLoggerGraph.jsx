@@ -1,64 +1,53 @@
-import React, { useEffect, useState } from "react";  
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
-const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts';
+import { format } from 'date-fns';
 
 const KeyLoggerGraph = () => {
-  const [metricData, setMetricData] = useState([])
-  
+  const [dataPoints, setDataPoints] = useState([]);
+
   useEffect(() => {
-    // TODO: Fetch metrics from MongoDB
-  }, [])
+    // TODO: Fetch metrics from backend api
+    const getMetricData = async () => {
+      const response = await axios.get(
+        `${process.env.PUBLIC_API_URL}:${process.env.PUBLIC_API_PORT}/keylogger/24hr`,
+      );
+
+      const rawData = response.data;
+
+      const dataPoints = rawData.map((entry) => {
+        return {
+          timestamp: format(new Date(entry.batch_time), 'HH:mm'),
+          button_right_presses: entry.button_right_presses ?? 0,
+          button_left_presses: entry.button_left_presses ?? 0,
+          mouse_distance: entry.mouse_distance ?? 0,
+          button_middle_presses: entry.button_middle_presses ?? 0,
+          key_presses: entry.key_presses ?? 0,
+        };
+      });
+
+      dataPoints.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+      setDataPoints(dataPoints);
+    };
+
+    getMetricData();
+  }, []);
 
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart
         width={500}
         height={200}
-        data={data}
+        data={dataPoints}
         margin={{
           top: 5,
           right: 30,
@@ -67,15 +56,58 @@ const KeyLoggerGraph = () => {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="timestamp" />
         <YAxis />
-        <Tooltip />
+        <Tooltip
+          contentStyle={{
+            background: 'var(--mui-bg-paper)',
+            borderRadius: '8px',
+          }}
+        />
         <Legend />
-        <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={2}  activeDot={{ r: 8 }} />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" strokeWidth={2}  />
+        <Line
+          type="monotone"
+          dataKey="button_right_presses"
+          name="R-Clicks"
+          stroke="#8884d8"
+          strokeWidth={1}
+          dot={false}
+        />
+        <Line
+          type="monotone"
+          dataKey="button_left_presses"
+          name="L-Clicks"
+          stroke="#82ca9d"
+          strokeWidth={1}
+          dot={false}
+        />
+        <Line
+          type="monotone"
+          dataKey="button_middle_presses"
+          name="M-Clicks"
+          stroke="#ffc658"
+          strokeWidth={1}
+          dot={false}
+        />
+        <Line
+          type="monotone"
+          dataKey="mouse_distance"
+          name="Mouse Distance (inch)"
+          stroke="#ff7300"
+          strokeWidth={1}
+          dot={false}
+        />
+        <Line
+          type="monotone"
+          dataKey="key_presses"
+          name="Key presses"
+          stroke="#387908"
+          strokeWidth={1}
+          dot={false}
+        />
       </LineChart>
     </ResponsiveContainer>
-  )
-}
+  );
+};
 
-export default KeyLoggerGraph
+export default KeyLoggerGraph;
