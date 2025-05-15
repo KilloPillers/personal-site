@@ -23,7 +23,7 @@ const ProjectCardTimeline = () => {
   // CONSIDER: Should the timeline sort projects based on year?
   // better projects should be highlighted at the top though?
   const isNarrowScreen = useMediaQuery('(max-width: 1550px)');
-  const isReallySmall = useMediaQuery('(max-width: 400px)');
+  const isReallySmall = useMediaQuery('(max-width: 430px)');
 
   return (
     /* something */
