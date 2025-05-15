@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "https://portfolio.juan-alvarez.dev",
   "scripts": {
-    "build": "rsbuild build && echo 'porfolio.juan-alvarez.dev' > ./dist/CNAME",
+    "build": "rsbuild build && echo -n 'porfolio.juan-alvarez.dev' > ./dist/CNAME",
     "check": "biome check --write",
     "dev": "rsbuild dev --env-mode development --open",
     "prod": "rsbuild prod --env-mode production --open",
