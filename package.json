@@ -5,14 +5,14 @@
   "type": "module",
   "homepage": "https://portfolio.juan-alvarez.dev",
   "scripts": {
-    "build": "rsbuild build && echo -n 'porfolio.juan-alvarez.dev' > ./dist/CNAME",
+    "build": "rsbuild build",
     "check": "biome check --write",
     "dev": "rsbuild dev --env-mode development --open",
     "prod": "rsbuild prod --env-mode production --open",
     "format": "prettier --write .",
     "lint": "eslint .",
     "preview": "rsbuild preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "echo -n 'porfolio.juan-alvarez.dev' > ./dist/CNAME && gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

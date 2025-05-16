@@ -29,7 +29,7 @@ const KeyLoggerGraph = () => {
           timestamp: format(new Date(entry.batch_time), 'HH:mm'),
           button_right_presses: entry.button_right_presses ?? 0,
           button_left_presses: entry.button_left_presses ?? 0,
-          mouse_distance: entry.mouse_distance ?? 0,
+          mouse_distance: entry.mouse_distance.toFixed(2) ?? 0,
           button_middle_presses: entry.button_middle_presses ?? 0,
           key_presses: entry.key_presses ?? 0,
         };
@@ -92,7 +92,7 @@ const KeyLoggerGraph = () => {
         <Line
           type="monotone"
           dataKey="mouse_distance"
-          name="Mouse Distance (inch)"
+          name="Mouse Distance (in)"
           stroke="#ff7300"
           strokeWidth={1}
           dot={false}
