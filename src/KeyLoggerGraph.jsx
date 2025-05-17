@@ -11,9 +11,13 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { format } from 'date-fns';
+import { Box, Paper, Typography } from '@mui/material';
+import CircleIcon from '@mui/icons-material/Circle';
+import './HeaderProfile.css';
 
 const KeyLoggerGraph = () => {
   const [dataPoints, setDataPoints] = useState([]);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     // TODO: Fetch metrics from backend api
@@ -36,6 +40,9 @@ const KeyLoggerGraph = () => {
       });
 
       dataPoints.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+      if (dataPoints[dataPoints.length - 1].mouse_distance > 0.0) {
+        setIsActive(true);
+      }
       setDataPoints(dataPoints);
     };
 
@@ -43,70 +50,85 @@ const KeyLoggerGraph = () => {
   }, []);
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <LineChart
-        width={500}
-        height={200}
-        data={dataPoints}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="timestamp" />
-        <YAxis />
-        <Tooltip
-          contentStyle={{
-            background: 'var(--mui-bg-paper)',
-            borderRadius: '8px',
+    <div className="graph">
+      <Typography variant="h6">Status</Typography>
+      {isActive ? (
+        <Paper className="status">
+          <CircleIcon sx={{ fontSize: 10, color: 'green' }} />
+          <Typography>Online</Typography>
+        </Paper>
+      ) : (
+        <Paper className="status">
+          <CircleIcon sx={{ fontSize: 10, color: 'grey' }} />
+          <Typography color="grey">Offline</Typography>
+        </Paper>
+      )}
+
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+          width={500}
+          height={200}
+          data={dataPoints}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
           }}
-        />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="button_right_presses"
-          name="R-Clicks"
-          stroke="#8884d8"
-          strokeWidth={1}
-          dot={false}
-        />
-        <Line
-          type="monotone"
-          dataKey="button_left_presses"
-          name="L-Clicks"
-          stroke="#82ca9d"
-          strokeWidth={1}
-          dot={false}
-        />
-        <Line
-          type="monotone"
-          dataKey="button_middle_presses"
-          name="M-Clicks"
-          stroke="#ffc658"
-          strokeWidth={1}
-          dot={false}
-        />
-        <Line
-          type="monotone"
-          dataKey="mouse_distance"
-          name="Mouse Distance (in)"
-          stroke="#ff7300"
-          strokeWidth={1}
-          dot={false}
-        />
-        <Line
-          type="monotone"
-          dataKey="key_presses"
-          name="Key presses"
-          stroke="#387908"
-          strokeWidth={1}
-          dot={false}
-        />
-      </LineChart>
-    </ResponsiveContainer>
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="timestamp" />
+          <YAxis />
+          <Tooltip
+            contentStyle={{
+              background: 'var(--mui-bg-paper)',
+              borderRadius: '8px',
+            }}
+          />
+          <Legend />
+          <Line
+            type="monotone"
+            dataKey="button_right_presses"
+            name="R-Clicks"
+            stroke="#8884d8"
+            strokeWidth={1}
+            dot={false}
+          />
+          <Line
+            type="monotone"
+            dataKey="button_left_presses"
+            name="L-Clicks"
+            stroke="#82ca9d"
+            strokeWidth={1}
+            dot={false}
+          />
+          <Line
+            type="monotone"
+            dataKey="button_middle_presses"
+            name="M-Clicks"
+            stroke="#ffc658"
+            strokeWidth={1}
+            dot={false}
+          />
+          <Line
+            type="monotone"
+            dataKey="mouse_distance"
+            name="Mouse Distance (in)"
+            stroke="#ff7300"
+            strokeWidth={1}
+            dot={false}
+          />
+          <Line
+            type="monotone"
+            dataKey="key_presses"
+            name="Key presses"
+            stroke="#387908"
+            strokeWidth={1}
+            dot={false}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 
