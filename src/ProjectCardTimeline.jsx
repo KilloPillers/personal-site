@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import {
   Timeline,
   TimelineItem,
@@ -18,12 +19,24 @@ import {
 import ProjectCard from './ProjectCard';
 import projects from './projects.json';
 
+const PROJECTS_URL =
+  'https://jfalvarez-portfolio-assets.s3.us-east-2.amazonaws.com/projects.json';
+
 const ProjectCardTimeline = () => {
   // TODO: Use Timeline component to show the date of when you did project.
   // CONSIDER: Should the timeline sort projects based on year?
   // better projects should be highlighted at the top though?
   const isNarrowScreen = useMediaQuery('(max-width: 1550px)');
   const isReallySmall = useMediaQuery('(max-width: 430px)');
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    if (!PROJECTS_URL) return;
+    fetch(PROJECTS_URL)
+      .then((res) => res.json())
+      .then(setProjects)
+      .catch(console.error);
+  }, []);
 
   return (
     /* something */
@@ -117,7 +130,7 @@ const ProjectCardTimeline = () => {
             >
               <ProjectCard
                 title={project.title}
-                description={project.description}
+                descriptionUrl={project.descriptionUrl}
                 tags={project.tags}
                 images={project.images}
               />

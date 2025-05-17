@@ -1,38 +1,8 @@
 [
   {
     "year": "2021",
-    "title": "Heroes of Hammerwatch Modding",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu efficitur nulla. Nulla facilisi. Duis interdum, ex vel commodo porta, odio urna blandit justo, eget convallis ipsum urna sed sem. Sed cursus erat orci, vitae lacinia ante pulvinar sit amet. Donec vel mi sed lacus finibus congue. Praesent lacus nulla, suscipit at bibendum vitae, ultrices non libero. Donec sodales congue sapien a condimentum. Phasellus porttitor, velit sed pellentesque elementum, arcu enim dignissim nunc, ac porta est tortor et massa. Sed eu lorem leo. Praesent dolor erat, euismod et fringilla vel, ultricies quis leo. Cras nec egestas sapien.",
-    "tags": [
-      "AngelScript",
-      "Asesprite"
-    ],
-    "icon": "https://jfalvarez-portfolio-assets.s3.us-east-2.amazonaws.com/hoh_icon_32.png",
-    "images": [
-      "https://jfalvarez-portfolio-assets.s3.us-east-2.amazonaws.com/EnhancedTooltips.jpeg", 
-      "https://jfalvarez-portfolio-assets.s3.us-east-2.amazonaws.com/chooseyourbloodrites.png",
-      "https://jfalvarez-portfolio-assets.s3.us-east-2.amazonaws.com/chooseimpreward.png"
-    ]
-  },
-  {
-    "year": "2021",
-    "title": "Heroes of Hammerwatch Modding",
-    "description": ".... . Contributor the the HoH wiki page. AngelScript is an open-source compiled scripting language influenced by C++ used in other popular games such as; It Takes Two, Amnesia: The Dark Descent, Dustforce, Sven Co-op.",
-    "tags": [
-      "AngelScript",
-      "Asesprite"
-    ],
-    "icon": "https://jfalvarez-portfolio-assets.s3.us-east-2.amazonaws.com/hoh_icon_32.png",
-    "images": [
-      "https://jfalvarez-portfolio-assets.s3.us-east-2.amazonaws.com/EnhancedTooltips.jpeg", 
-      "https://jfalvarez-portfolio-assets.s3.us-east-2.amazonaws.com/chooseyourbloodrites.png",
-      "https://jfalvarez-portfolio-assets.s3.us-east-2.amazonaws.com/chooseimpreward.png"
-    ]
-  },
-  {
-    "year": "2021",
-    "title": "Heroes of Hammerwatch Modding",
-    "description": ".... . Contributor the the HoH wiki page. AngelScript is an open-source compiled scripting language influenced by C++ used in other popular games such as; It Takes Two, Amnesia: The Dark Descent, Dustforce, Sven Co-op.",
+    "title": "Mod Developer for Heroes of Hammerwatch",
+    "descriptionUrl": "https://jfalvarez-portfolio-assets.s3.us-east-2.amazonaws.com/ProjectMarkdowns/hoh.md",
     "tags": [
       "AngelScript",
       "Asesprite"
