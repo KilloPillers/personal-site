@@ -54,7 +54,10 @@ const KeyLoggerGraph = () => {
       <Typography variant="h6">Status</Typography>
       {isActive ? (
         <Paper className="status">
-          <CircleIcon sx={{ fontSize: 10, color: 'green' }} />
+          <div class="ring-container">
+            <div class="ringring"></div>
+            <div class="circle"></div>
+          </div>
           <Typography>Online</Typography>
         </Paper>
       ) : (
