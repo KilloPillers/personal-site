@@ -51,7 +51,6 @@ const KeyLoggerGraph = () => {
 
   return (
     <div className="graph">
-      <Typography variant="h6">Status</Typography>
       {isActive ? (
         <Paper className="status">
           <div class="ring-container">

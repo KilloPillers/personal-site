@@ -9,15 +9,33 @@ const SlideShowContainer = ({ images }) => {
   return (
     <Box className="projectcard-slideshow-container">
       <Box className="projectcard-slideshow-track">
-        {duppedImages.map((image, index) => (
-          <Box
-            key={index}
-            className="projectcard-slideshow-track-image-container"
-          >
-            <img src={image} />
-            <div className="projectcard-slideshow-gradient" />
-          </Box>
-        ))}
+        {duppedImages.map((image, index) => {
+          const isVideo = image.split('.').pop() === 'webm';
+          return (
+            <Box
+              key={index}
+              className="projectcard-slideshow-track-image-container"
+            >
+              {isVideo ? (
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="projectcard-slideshow-video"
+                >
+                  <source src={image} type="video/webm" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <>
+                  <img src={image} alt={`Slide ${index}`} />
+                </>
+              )}
+              <div className="projectcard-slideshow-gradient" />
+            </Box>
+          );
+        })}
       </Box>
     </Box>
   );

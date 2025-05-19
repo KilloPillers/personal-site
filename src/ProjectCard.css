@@ -39,11 +39,12 @@
 .projectcard-slideshow-track-image-container {
   position: relative;
   border-radius: 8px;
-  height:152px;
+  height: 152px;
   overflow: hidden;
 }
 
-.projectcard-slideshow-track img {
+.projectcard-slideshow-track img,
+.projectcard-slideshow-track video {
   object-fit: cover;
   aspect-ratio: auto; 
   background: var(--mui-bg-paper);

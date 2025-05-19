@@ -34,7 +34,11 @@ const ProjectCardTimeline = () => {
     if (!PROJECTS_URL) return;
     fetch(PROJECTS_URL)
       .then((res) => res.json())
-      .then(setProjects)
+      .then((data) => {
+        // sort in order of year
+        const sorted = data.sort((a, b) => b.year - a.year);
+        setProjects(sorted);
+      })
       .catch(console.error);
   }, []);
 
@@ -79,15 +83,10 @@ const ProjectCardTimeline = () => {
             ) : (
               <TimelineConnector sx={{ visibility: 'hidden' }} />
             )}
-            <TimelineDot color="primary" sx={{ bgcolor: 'secondary.main' }}>
+            <TimelineDot color="info" sx={{ bgcolor: 'secondary.main' }}>
               <Avatar
-                sx={
-                  isNarrowScreen
-                    ? {
-                        bgcolor: 'secondary.main',
-                      }
-                    : { bgcolor: 'secondary.main' }
-                }
+                variant="circular"
+                sx={{ bgcolor: 'secondary.main', padding: '4px' }}
                 alt={project.title.charAt(0)}
                 src={project.icon}
               />
