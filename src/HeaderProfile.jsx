@@ -18,8 +18,7 @@ const HeaderProfile = () => {
               Full-Stack Software Developer
             </Typography>
             <Typography variant="body4" align="left" sx={{ marginTop: '4px' }}>
-              Good morning, afternoon, or evening, wherever and whenever you are
-              and welcome to my portfolio. If you are a person reviewing this
+              Hello and welcome to my portfolio. If you are a person reviewing this
               portfolio let me know if my skillsets can benefit you!
             </Typography>
             <Typography>
