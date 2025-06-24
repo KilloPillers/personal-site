@@ -10,7 +10,8 @@ const SlideShowContainer = ({ images }) => {
     <Box className="projectcard-slideshow-container">
       <Box className="projectcard-slideshow-track">
         {duppedImages.map((image, index) => {
-          const isVideo = image.split('.').pop() === 'webm';
+          const extension = image.split('.').pop().toLowerCase();
+          const isVideo = ['webm', 'mp4'].includes(extension);
           return (
             <Box
               key={index}
@@ -24,7 +25,7 @@ const SlideShowContainer = ({ images }) => {
                   playsInline
                   className="projectcard-slideshow-video"
                 >
-                  <source src={image} type="video/webm" />
+                  <source src={image} type={`video/${extension}`} />
                   Your browser does not support the video tag.
                 </video>
               ) : (
