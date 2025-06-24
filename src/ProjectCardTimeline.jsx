@@ -132,6 +132,8 @@ const ProjectCardTimeline = () => {
                 descriptionUrl={project.descriptionUrl}
                 tags={project.tags}
                 images={project.images}
+                perspectiveEnabled={!isReallySmall}
+                flipped={index % 2 === 1 && !isNarrowScreen}
               />
             </Box>
           </TimelineContent>

@@ -42,28 +42,54 @@ const SlideShowContainer = ({ images }) => {
   );
 };
 
-const ProjectCard = ({ title, descriptionUrl, tags, images }) => {
+const ProjectCard = ({
+  title,
+  descriptionUrl,
+  tags,
+  images,
+  perspectiveEnabled,
+  flipped,
+}) => {
   // TODO: Add auto-scrolling images to the image pane.
   // TODO: Use Skeleton component for wrapping images.
   // TODO: Use accent color for the tech stack so that it stands out more use MUI <Chip icon={<img src="link">}>FOO</Chip>
 
   return (
-    <Paper className="projectcard-container" variant="outlined">
-      <SlideShowContainer images={images} />
-      <Box className="projectcard-content">
-        <Box className="projectcard-description">
-          <Typography variant="h6" component="span">
-            {title}
-          </Typography>
-          <MarkdownRenderer url={descriptionUrl} />
+    <div
+      style={{
+        perspective: '800px',
+        perspectiveOrigin: 'center center',
+      }}
+    >
+      <Paper
+        className="projectcard-container"
+        variant="outlined"
+        sx={
+          perspectiveEnabled
+            ? {
+                transform: flipped ? 'rotateY(5deg)' : 'rotateY(-5deg)',
+                transformStyle: 'preserve-3d', // optional, depending on your needs
+                transition: 'transform 0.3s ease', // add smooth animation
+              }
+            : {}
+        }
+      >
+        <SlideShowContainer images={images} />
+        <Box className="projectcard-content">
+          <Box className="projectcard-description">
+            <Typography variant="h6" component="span">
+              {title}
+            </Typography>
+            <MarkdownRenderer url={descriptionUrl} />
+          </Box>
+          <Box className="projectcard-tags-container">
+            {tags.map((tag, index) => (
+              <Chip key={index} label={tag} color="primary" />
+            ))}
+          </Box>
         </Box>
-        <Box className="projectcard-tags-container">
-          {tags.map((tag, index) => (
-            <Chip key={index} label={tag} color="primary" />
-          ))}
-        </Box>
-      </Box>
-    </Paper>
+      </Paper>
+    </div>
   );
 };
 
