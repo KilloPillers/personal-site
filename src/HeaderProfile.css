@@ -26,6 +26,14 @@
   min-width: 350px;
 }
 
+.graph-header {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 15px;
+  height: 40px;
+}
+
 .graph {
   display: flex;
   flex-direction: column;
@@ -67,12 +75,13 @@
     100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
 }
 
-.status {
+.graph-header-item {
   display: flex;
   border-radius: 10px;
   flex-direction: row;
-  width: 80px;
   align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
   justify-content: center;
   gap: 4px;
   margin-bottom: 6px;

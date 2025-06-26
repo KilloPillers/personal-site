@@ -18,10 +18,13 @@ import './HeaderProfile.css';
 const KeyLoggerGraph = () => {
   const [dataPoints, setDataPoints] = useState([]);
   const [isActive, setIsActive] = useState(false);
+  const [rawWPM, setRawWPM] = useState(0);
+  const [wpm, setWPM] = useState(0);
+  const [accuracy, setAccuracy] = useState(0);
 
   useEffect(() => {
-    // TODO: Fetch metrics from backend api
     const getMetricData = async () => {
+      // Get stats from my keylogger
       const response = await axios.get(
         `${process.env.PUBLIC_API_URL}:${process.env.PUBLIC_API_PORT}/keylogger/24hr`,
       );
@@ -46,26 +49,55 @@ const KeyLoggerGraph = () => {
       setDataPoints(dataPoints);
     };
 
+    const getMonkeyTypeData = async () => {
+      // Get MonkeyType Stats
+      const response = await axios.get(
+        `${process.env.PUBLIC_API_URL}:${process.env.PUBLIC_API_PORT}/monkeytype/last`,
+      );
+
+      const monkeyTypeStats = response.data;
+
+      setRawWPM(Math.ceil(monkeyTypeStats.rawWPM));
+      setWPM(Math.ceil(monkeyTypeStats.wpm));
+      setAccuracy(Math.ceil(monkeyTypeStats.accuracy));
+    };
+
+    console.log('test');
     getMetricData();
+    getMonkeyTypeData();
   }, []);
 
   return (
     <div className="graph">
-      {isActive ? (
-        <Paper className="status">
-          <div class="ring-container">
-            <div class="ringring"></div>
-            <div class="circle"></div>
-          </div>
-          <Typography>Online</Typography>
+      <div className="graph-header">
+        {isActive ? (
+          <Paper className="graph-header-item">
+            <div className="ring-container">
+              <div className="ringring"></div>
+              <div className="circle"></div>
+            </div>
+            <Typography>Online</Typography>
+          </Paper>
+        ) : (
+          <Paper className="graph-header-item">
+            <CircleIcon sx={{ fontSize: 10, color: 'grey' }} />
+            <Typography color="grey">Offline</Typography>
+          </Paper>
+        )}
+        <Paper className="graph-header-item">
+          <Typography color={isActive ? '' : 'grey'}>WPM: {wpm}</Typography>
         </Paper>
-      ) : (
-        <Paper className="status">
-          <CircleIcon sx={{ fontSize: 10, color: 'grey' }} />
-          <Typography color="grey">Offline</Typography>
+        <Paper className="graph-header-item">
+          <Typography color={isActive ? '' : 'grey'}>
+            Raw WPM: {rawWPM}
+          </Typography>
         </Paper>
-      )}
-
+        <Paper className="graph-header-item">
+          <Typography color={isActive ? '' : 'grey'}>
+            Accuracy: {accuracy}
+          </Typography>
+        </Paper>
+      </div>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           width={500}
