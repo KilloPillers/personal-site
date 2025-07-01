@@ -15,6 +15,8 @@ import { Box, Paper, Typography } from '@mui/material';
 import CircleIcon from '@mui/icons-material/Circle';
 import './HeaderProfile.css';
 
+//TODO: put monkeytype stats in a single paper
+
 const KeyLoggerGraph = () => {
   const [dataPoints, setDataPoints] = useState([]);
   const [isActive, setIsActive] = useState(false);
@@ -62,7 +64,6 @@ const KeyLoggerGraph = () => {
       setAccuracy(Math.ceil(monkeyTypeStats.accuracy));
     };
 
-    console.log('test');
     getMetricData();
     getMonkeyTypeData();
   }, []);
@@ -94,7 +95,7 @@ const KeyLoggerGraph = () => {
         </Paper>
         <Paper className="graph-header-item">
           <Typography color={isActive ? '' : 'grey'}>
-            Accuracy: {accuracy}
+            Accuracy: {accuracy}%
           </Typography>
         </Paper>
       </div>
