@@ -1,0 +1,11 @@
+.custom-heading {
+  color: white;
+  font-size: 1.25rem !important;
+  font-weight: bold !important;
+}
+
+@media (min-width: 750px) {
+  .custom-heading {
+    font-size: 3.75rem !important; 
+  }
+}
