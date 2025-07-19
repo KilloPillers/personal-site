@@ -81,7 +81,7 @@ const Footer = () => {
         <Box sx={{ alignSelf: 'left' }}>
           <Typography>
             Designed in Figma, built with React, hosted on GitHub Pages and
-            Railway.
+            Railway with ❤️.
           </Typography>
         </Box>
       </Box>

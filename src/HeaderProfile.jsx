@@ -75,11 +75,7 @@ const HeaderProfile = () => {
           </Typography>
           <Typography variant="body3" align="left">
             Recently graduated from UC Davis with a B.S in Computer Science and
-            am excited to join a team where I can learn, grow, and contribute.
-          </Typography>
-          <Typography variant="body3" align="left">
-            I've worked across the stack, but I'm often happiest when I can
-            build something intuitive and helpful that removes a pain point.
+            I'm excited to join a team where I can provide shareholder value.
           </Typography>
           <Typography variant="body3" align="left">
             In my spare time, I'm usually editing my dotfiles, hanging out with
