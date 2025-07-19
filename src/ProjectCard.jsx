@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Box, Chip, Paper, Typography } from '@mui/material';
 import MarkdownRenderer from './MarkdownRenderer';
 import './ProjectCard.css';

@@ -1,12 +1,11 @@
 import React from 'react';
-import { Box, Grid, IconButton, Paper, Typography } from '@mui/material';
+import { Box, IconButton, Paper, Typography } from '@mui/material';
 import KeyLoggerGraph from './KeyLoggerGraph';
 import './HeaderProfile.css';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import pfp from './pfp.jpg';
 import { Avatar } from '@mui/material';
-import { Translate } from '@mui/icons-material';
 
 const HeaderProfile = () => {
   // TODO: close gap between hero-graph and about
