@@ -15,7 +15,7 @@ const HeaderProfile = () => {
     <Box className="content">
       <Box className="hero-graph">
         <Box>
-          <Paper className="hero">
+          <Paper variant="outlined" className="hero">
             <Typography variant="h5">Juan Alvarez</Typography>
             <Typography variant="subtitle2">
               Full-Stack Software Developer
@@ -66,31 +66,25 @@ const HeaderProfile = () => {
             right: '0',
           }}
         />
-        <Paper className="about">
+        <Paper variant="outlined" className="about">
           <Typography variant="h5">About Me</Typography>
           <Typography variant="body3" align="left">
             I'm a developer who thrives on building tools that makes life easier
-            for others. Whether through dashboards that distills complex
-            analytics or a system that generates dotillism art. I'm especially
-            drawn to work that enhances clarity, removes friction, and enables
-            creativity, whether for one user or a whole team.
+            for others. I'm especially drawn to work that enhances clarity,
+            removes friction, and enables creativity, whether for one user or a
+            whole team.
           </Typography>
           <Typography variant="body3" align="left">
             Recently graduated from UC Davis with a B.S in Computer Science and
-            am eager to join a team where I can learn, grow, and contribute. I'm
-            looking for collaborative environments where we can build software
-            that has a positive impact.
+            am excited to join a team where I can learn, grow, and contribute.
           </Typography>
           <Typography variant="body3" align="left">
-            In the past I've built dashboards to help content teams make better
-            decisions, as well as tools that simplify how users interact with
-            complex systems. I've worked across the stack, but I'm often
-            happiest when I can build something intuitive and helpful that
-            removes a pain point.
+            I've worked across the stack, but I'm often happiest when I can
+            build something intuitive and helpful that removes a pain point.
           </Typography>
           <Typography variant="body3" align="left">
-            In my spare time, I'm usually editing my dotfiles, reading a sci-fi
-            novel, hanging out with my girlfriend, or ABH'ing through City 17.
+            In my spare time, I'm usually editing my dotfiles, hanging out with
+            my girlfriend, or ABH'ing through City 17.
           </Typography>
         </Paper>
       </Box>

@@ -6,14 +6,34 @@
 
 .footer-container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: 10px;
+  gap: 2rem; 
+  padding: 2rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .footer-content {
+    flex-direction: row;
+  }
 }
 
 .form-container {
-  width: 350px;
+  width: 325px;
   display: flex;
   flex-direction: column;
   padding: 20px;
