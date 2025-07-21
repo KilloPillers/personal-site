@@ -41,6 +41,7 @@
   padding-top: 10px;
   width: 100%;
   height: 285px;
+  min-width: 350px;
 }
 
 .ring-container {

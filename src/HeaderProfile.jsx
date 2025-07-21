@@ -16,6 +16,7 @@ const HeaderProfile = () => {
         <Box
           sx={{
             display: 'flex',
+            justifyContent: 'center',
             flexDirection: 'row',
             gap: '5rem',
             minWidth: '350px',
