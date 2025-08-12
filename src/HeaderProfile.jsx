@@ -38,7 +38,7 @@ const HeaderProfile = () => {
               system, the contents of your /etc/passwd file, and everything
               stored in your ~/.ssh directory.
             </Typography>
-            <Typography>Email me at: jfalvarez957@gmail.com</Typography>
+            <Typography>Email me at: juan@juan-alvarez.dev</Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: '4px' }}>
               <IconButton
                 onClick={() => {

@@ -70,8 +70,13 @@ const Footer = () => {
             }}
           >
             <Typography variant="h4">Contact</Typography>
-            <Typography>jfalvarez957@gmail.com</Typography>
-            <Link href="/resume.pdf" underline="hover">
+            <Typography>juan@juan-alvarez.dev</Typography>
+            <Link
+              href="resume.pdf"
+              underline="hover"
+              component="a"
+              download="resume.pdf"
+            >
               Download Resume
             </Link>
           </Box>
