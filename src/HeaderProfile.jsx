@@ -6,9 +6,12 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import pfp from './pfp.jpg';
 import { Avatar } from '@mui/material';
+import SpeechBubble from './SpeakBubble';
 
 const HeaderProfile = () => {
   // TODO: close gap between hero-graph and about
+  const params = new URLSearchParams(window.location.search);
+  const companyRef = params.get('ref');
 
   return (
     <Box className="content">
@@ -18,7 +21,7 @@ const HeaderProfile = () => {
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'row',
-            gap: '5rem',
+            gap: '7rem',
             minWidth: '350px',
             flexWrap: 'wrap',
           }}
@@ -59,18 +62,26 @@ const HeaderProfile = () => {
             </Box>
           </Paper>
           <Box className="about-container">
-            <Avatar
-              alt="Juan Alvarez"
-              src={pfp}
-              className="profile-avatar"
-              sx={{
-                width: 'clamp(96px, 10vw, 144px)',
-                height: 'clamp(96px, 10vw, 144px)',
-                position: 'absolute',
-                top: 'clamp(-5vh, -10px, -28px)',
-                right: '0',
-              }}
-            />
+            <Box>
+              <Avatar
+                alt="Juan Alvarez"
+                src={pfp}
+                className="profile-avatar"
+                sx={{
+                  width: 'clamp(96px, 10vw, 144px)',
+                  height: 'clamp(96px, 10vw, 144px)',
+                  position: 'absolute',
+                  top: 'clamp(-5vh, -10px, -28px)',
+                  right: '0',
+                }}
+              ></Avatar>
+              {companyRef && (
+                <SpeechBubble side="right">
+                  Hey {companyRef} recruiter, thanks for checking out my
+                  portfolio!
+                </SpeechBubble>
+              )}
+            </Box>
             <Paper variant="outlined" className="about">
               <Typography variant="h5">About Me</Typography>
               <Typography variant="body3" align="left">
