@@ -50,10 +50,6 @@ const ProjectCard = ({
   perspectiveEnabled,
   flipped,
 }) => {
-  // TODO: Add auto-scrolling images to the image pane.
-  // TODO: Use Skeleton component for wrapping images.
-  // TODO: Use accent color for the tech stack so that it stands out more use MUI <Chip icon={<img src="link">}>FOO</Chip>
-
   return (
     <div
       style={{
@@ -65,11 +61,11 @@ const ProjectCard = ({
         className="projectcard-container"
         variant="outlined"
         sx={
-          perspectiveEnabled
+          false
             ? {
                 transform: flipped ? 'rotateY(5deg)' : 'rotateY(-5deg)',
-                transformStyle: 'preserve-3d', // optional, depending on your needs
-                transition: 'transform 0.3s ease', // add smooth animation
+                transformStyle: 'preserve-3d',
+                transition: 'transform 0.3s ease',
               }
             : {}
         }

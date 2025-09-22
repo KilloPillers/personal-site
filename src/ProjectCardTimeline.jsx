@@ -17,6 +17,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import ProjectCard from './ProjectCard';
+import './ProjectCardTimeline.css';
 import projects from './projects.json';
 
 const PROJECTS_URL =
@@ -118,6 +119,11 @@ const ProjectCardTimeline = () => {
             }
           >
             <Box
+              className={
+                index % 2 == 0
+                  ? 'projectCardContainerRight'
+                  : 'projectCardContainerLeft'
+              }
               sx={{
                 maxWidth: '700px',
                 minWidth: '280px',
