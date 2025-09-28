@@ -120,7 +120,7 @@ const ProjectCardTimeline = () => {
           >
             <Box
               className={
-                index % 2 == 0
+                index % 2 == 0 || isNarrowScreen
                   ? 'projectCardContainerRight'
                   : 'projectCardContainerLeft'
               }
