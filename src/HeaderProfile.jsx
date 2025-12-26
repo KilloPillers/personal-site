@@ -91,13 +91,12 @@ const HeaderProfile = () => {
                 one user or a whole team.
               </Typography>
               <Typography variant="body3" align="left">
-                Recently graduated from UC Davis with a B.S in Computer Science
-                and I'm excited to join a team where I can provide shareholder
-                value.
+                I'm a UC Davis graduate with a B.S in Computer Science and I'm
+                excited to join a team where I can provide shareholder value.
               </Typography>
               <Typography variant="body3" align="left">
-                In my spare time, I'm usually editing my dotfiles, hanging out
-                with my girlfriend, or ABH'ing through City 17.
+                In my spare time, I'm usually working on my homelab, building
+                something cool with code, or ABH'ing through Highway 17.
               </Typography>
             </Paper>
           </Box>
